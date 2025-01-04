@@ -1,11 +1,7 @@
-{ config, pkgs, ... }:
-let 
-  unstable = import (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/4aa36568d413aca0ea84a1684d2d46f55dbabad7a) { }; 
-in 
+{ config, pkgs, ... }: 
 {
   programs.neovim = {
     enable = true;
-    package = unstable.neovim-unwrapped;
     defaultEditor = true;
 
     viAlias = true;
@@ -97,11 +93,11 @@ in
       }
 
       dressing-nvim
-      unstable.vimPlugins.render-markdown-nvim
-      unstable.vimPlugins.img-clip-nvim
+      render-markdown-nvim
+      img-clip-nvim
 
       {
-        plugin = unstable.vimPlugins.avante-nvim;
+        plugin = avante-nvim;
         type = "lua";
         config = "
           -- deps:
