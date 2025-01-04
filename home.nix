@@ -4,6 +4,8 @@
   imports = [
     ./nvim/nvim.nix
     ./shell/default.nix
+    ./terminal/default.nix
+    ./git/git.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -33,6 +35,13 @@
     bazel_7
     rpi-imager
     obsidian
+
+    tree
+    gnumake
+    unzip
+    gcc
+    expressvpn
+    hyprland
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
