@@ -95,7 +95,7 @@
       dressing-nvim
       render-markdown-nvim
       img-clip-nvim
-
+    
       {
         plugin = avante-nvim;
         type = "lua";

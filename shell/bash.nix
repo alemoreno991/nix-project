@@ -6,6 +6,10 @@
     '';
 
     historyControl = ["erasedups" "ignorespace"];
+    
+    profileExtra = ''
+      TERM="alacritty";
+    '';
 
     shellOptions = [
       "autocd"
