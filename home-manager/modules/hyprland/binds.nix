@@ -1,25 +1,22 @@
 {
   wayland.windowManager.hyprland.settings = {
-    "$mainMod" = "SUPER";
     bind = [
       "$mainMod SHIFT, Return, exec, $terminal"
       "$mainMod SHIFT, C, killactive,"
       "$mainMod SHIFT, Q, exit,"
-      "$mainMod,       E, exec, $fileManager"
+      "$mainMod,       R, exec, $fileManager"
       "$mainMod,       F, togglefloating,"
-      "$mainMod,       D, exec, $menu"
-      "$mainMod,       P, pseudo,"
+      "$mainMod,       D, exec, $menu --show drun"
+      "$mainMod,       P, pin,"
       "$mainMod,       J, togglesplit,"
-      "$mainMod,       V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+      "$mainMod,       E, exec, bemoji -cn"
+      "$mainMod,       V, exec, cliphist list | $menu --dmenu | cliphist decode | wl-copy"
       "$mainMod,       B, exec, pkill -SIGUSR2 waybar"
       "$mainMod SHIFT, B, exec, pkill -SIGUSR1 waybar"
-
-      # configuration files
-      "$mainMod SHIFT, R, exec, $terminal -e sh -c 'nh os switch'"
-      "$mainMod SHIFT, N, exec, $terminal -e sh -c '$EDITOR $FLAKE/nixos/configuration.nix'"
-      "$mainMod SHIFT, H, exec, $terminal -e sh -c '$EDITOR ~/.config/hypr/hyprland.conf'"
-      "$mainMod SHIFT, W, exec, $terminal -e sh -c '$EDITOR ~/.config/waybar/config.json'"
-      ", Print, exec, grimblast copysave area"
+      "$mainMod,       L, exec, loginctl lock-session"
+      "$mainMod,       P, exec, hyprpicker -an"
+      "$mainMod,       N, exec, swaync-client -t"
+      ", Print, exec, grimblast --notify --freeze copysave area"
 
       # Moving focus
       "$mainMod, left, movefocus, l"
@@ -80,8 +77,8 @@
       ",XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ",XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ",XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ",XF86MonBrightnessUp,   exec, brightnessctl s 10%+"
-      ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+      "$mainMod, bracketright, exec, brightnessctl s 10%+"
+      "$mainMod, bracketleft,  exec, brightnessctl s 10%-"
     ];
 
     # Audio playback

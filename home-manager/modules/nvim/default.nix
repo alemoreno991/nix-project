@@ -122,6 +122,9 @@
     extraPackages = with pkgs; [
       lua-language-server  # LSP server for lua 
       pyright              # LSP server for python 
+      python311Packages.python-lsp-server
+      nixd
+      vimPlugins.nvim-treesitter-parsers.hyprlang
     ];
   };
 
