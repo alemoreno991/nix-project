@@ -13,7 +13,10 @@
         "XDG_SCREENSHOTS_DIR,$HOME/screens"
       ];
 
-      monitor = ",1920x1080@60,auto,1";
+      monitor = [
+        "eDP-1,1920x1080@144.03,0x0,1"
+        "HDMI-A-1,1920x1080@60,0x-1080,1"
+      ];
       "$mainMod" = "SUPER";
       "$terminal" = "alacritty";
       "$fileManager" = "$terminal -e sh -c 'ranger'";
