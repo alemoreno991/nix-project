@@ -1,7 +1,7 @@
 { lib, config, ... }: 
 {
   imports = [
-    ./starship.nix
+    # ./starship.nix
     ./bash.nix
   ];
 }

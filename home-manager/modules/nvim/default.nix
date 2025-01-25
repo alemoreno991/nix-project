@@ -125,6 +125,7 @@
       python311Packages.python-lsp-server
       nixd
       vimPlugins.nvim-treesitter-parsers.hyprlang
+      bash-language-server
     ];
   };
 

@@ -31,6 +31,10 @@
         "wl-paste --type image --watch cliphist store"
       ];
 
+      cursor = {
+        no_hardware_cursors = true;
+      };
+
       general = {
         gaps_in = 0;
         gaps_out = 0;
