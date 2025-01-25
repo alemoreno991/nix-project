@@ -17,7 +17,7 @@
     ./waybar
     ./wofi
     ./zathura.nix
-    ./zsh.nix
+    # ./zsh.nix
     ./shell
   ];
 }

@@ -11,6 +11,7 @@
     telegram-desktop
 
     # CLI utils
+    brightnessctl
     bottom
     cliphist
     ffmpeg
