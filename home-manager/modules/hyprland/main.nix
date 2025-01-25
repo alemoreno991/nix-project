@@ -65,7 +65,12 @@
       input = {
         kb_layout = "us,ru,il";
         kb_options = "grp:caps_toggle";
+
+        touchpad = {
+          natural_scroll = true;
+        };
       };
+
 
       gestures = {
         workspace_swipe = true;
