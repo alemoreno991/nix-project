@@ -3,30 +3,34 @@
     enable = true;
     settings = {
       general = {
-        before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-        ignore_dbus_inhibit = false;
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = "pidof hyprlock || hyprlock";  # avoid starting multiple hyprlock instances.
+        before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
+        after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
       };
 
       listener = [
         {
-          timeout = 180;
-          on-timeout = "brightnessctl -s set 30";
-          on-resume = "brightnessctl -r";
+          timeout = 180; # 3min.
+          on-timeout = "brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+          on-resume = "brightnessctl -r"; # monitor backlight restore.
+        }
+        { 
+          timeout = 180; # 3min.
+          on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
+          on-resume = "brightnessctl -rd rgb:kbd_backlight";        # turn on keyboard backlight.
         }
         {
-          timeout = 300;
-          on-timeout = "loginctl lock-session";
+          timeout = 300; # 5min.
+          on-timeout = "loginctl lock-session"; # lock screen when timeout has passed}
         }
         {
-          timeout = 600;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          timeout = 310; # 5min 10sec
+          on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+          on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
         }
         {
-          timeout = 1200;
-          on-timeout = "systemctl suspend";
+          timeout = 1200; # 20min
+          on-timeout = "systemctl suspend"; # suspend PC
         }
       ];
     };
