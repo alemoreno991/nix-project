@@ -20,10 +20,8 @@
     "sdhci_pci" 
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "ddcci_backlight" ];
-  boot.extraModulePackages = [
-    config.boot.kernelPackages.ddcci-driver
-  ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/81891b4c-3d6a-43cc-ad57-8aa5ac244275";
