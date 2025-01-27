@@ -10,10 +10,20 @@
 
   hardware.system76.enableAll = true;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ 
+    "xhci_pci" 
+    "thunderbolt" 
+    "nvme" 
+    "usb_storage" 
+    "usbhid" 
+    "sd_mod" 
+    "sdhci_pci" 
+  ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "kvm-intel" "ddcci_backlight" ];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.ddcci-driver
+  ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/81891b4c-3d6a-43cc-ad57-8aa5ac244275";
