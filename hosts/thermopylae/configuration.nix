@@ -12,6 +12,8 @@
   networking.hostName = hostname;
 
   system.stateVersion = stateVersion;
+
+  fonts.fontDir.enable = true;
   
   nixpkgs.config.allowUnfree = true;
 

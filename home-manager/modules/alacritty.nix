@@ -1,4 +1,11 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
+
+  fonts.fontconfig.enable = true;
+
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -7,6 +14,7 @@
       font = {
         builtin_box_drawing = true;
         normal = {
+          family = lib.mkForce "JetBrainsMono Nerd Font Mono";
           style = lib.mkForce "Bold";
         };
       };
