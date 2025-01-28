@@ -127,6 +127,7 @@
       nixd
       vimPlugins.nvim-treesitter-parsers.hyprlang
       bash-language-server
+      nodejs-slim # Needed by copilot
     ];
   };
 
