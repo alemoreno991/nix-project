@@ -12,6 +12,12 @@
     extraLuaConfig = builtins.readFile(./lua/settings.lua);
 
     plugins = with pkgs.vimPlugins; [
+      vim-tmux-navigator
+      # { # Better navigation integration between vim and tmux
+      #   plugin = vim-tmux-navigator;
+      #   type = "lua";
+      #   config = builtins.readFile(./plugin/vim-tmux-navigator.lua);
+      # }
       vim-sleuth # Detect tabstop and shiftwidth automatically
       
       # See `:help gitsigns` to understand what the configuration keys do
