@@ -13,6 +13,7 @@
     ./nix.nix
     ./timezone.nix
     ./user.nix
+    ./yubikey.nix
     ./zram.nix
   ];
 }
