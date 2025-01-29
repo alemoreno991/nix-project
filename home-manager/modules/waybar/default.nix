@@ -17,8 +17,8 @@
           all-outputs = false;
           format = "{icon}";
           format-icons = {
-            "1" = "";
-            "2" = "";
+            "1" = "";
+            "2" = "";
             "3" = "";
             "4" = "";
             "5" = "";
@@ -36,15 +36,14 @@
 
         "hyprland/language" = {
           format-en = "🇺🇸";
-          format-ru = "🇷🇺";
-          format-he = "🇮🇱";
+          format-es = " 🇦🇷";
           min-length = 5;
           tooltip = false;
         };
 
         "custom/weather" = {
           format = " {} ";
-          exec = "curl -s 'wttr.in/Tashkent?format=%c%t'";
+          exec = "curl -s 'wttr.in/Taipei?format=%c%t'";
           interval = 300;
           class = "weather";
         };

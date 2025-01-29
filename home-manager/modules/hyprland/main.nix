@@ -70,7 +70,7 @@
       };
 
       input = {
-        kb_layout = "us,ru,il";
+        kb_layout = "us,es";
         kb_options = "grp:caps_toggle";
 
         touchpad = {
