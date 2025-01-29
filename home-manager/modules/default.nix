@@ -5,6 +5,7 @@
     # ./chromium.nix
     ./eza.nix
     ./git.nix
+    ./gpg.nix
     ./hyprland
     ./lazygit.nix
     ./nvim
