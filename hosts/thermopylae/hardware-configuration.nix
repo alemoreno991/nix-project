@@ -28,7 +28,21 @@
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-1d79ed1e-831f-414f-b108-6ae2581018c8".device = "/dev/disk/by-uuid/1d79ed1e-831f-414f-b108-6ae2581018c8";
+  # Enable support for the YubiKey PBA
+  boot.initrd.luks.yubikeySupport = true;
+
+  boot.initrd.luks.devices = {
+    "luks-1d79ed1e-831f-414f-b108-6ae2581018c8" = { 
+      device = "/dev/disk/by-uuid/1d79ed1e-831f-414f-b108-6ae2581018c8";
+      yubikey = {
+        slot = 2;
+        twoFactor = true;
+        storage = {
+          device = "/dev/disk/by-uuid/677C-995B";
+        };
+      };
+    };
+  };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/677C-995B";
