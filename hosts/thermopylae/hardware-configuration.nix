@@ -23,36 +23,39 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/81891b4c-3d6a-43cc-ad57-8aa5ac244275";
-      fsType = "ext4";
-    };
+  # # Enable support for the YubiKey PBA
+  # boot.initrd.luks.yubikeySupport = true;
 
-  # Enable support for the YubiKey PBA
-  boot.initrd.luks.yubikeySupport = true;
+  boot.initrd.systemd.enable = true;
 
   boot.initrd.luks.devices = {
     "luks-1d79ed1e-831f-414f-b108-6ae2581018c8" = { 
       device = "/dev/disk/by-uuid/1d79ed1e-831f-414f-b108-6ae2581018c8";
-      yubikey = {
-        slot = 2;
-        twoFactor = true;
-        storage = {
-          device = "/dev/disk/by-uuid/677C-995B";
-        };
-      };
+      crypttabExtraOpts = ["fido2-device=auto"];  # cryptenroll
+      # yubikey = {
+      #   slot = 2;
+      #   twoFactor = true;
+      #   storage = {
+      #     device = "/dev/nvme0n1p2";
+      #   };
+      # };
     };
   };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/677C-995B";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/" = { 
+    device = "/dev/disk/by-uuid/81891b4c-3d6a-43cc-ad57-8aa5ac244275";
+    fsType = "ext4";
+  };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/33fcdca1-2661-4071-a769-57ed4303bd8b"; }
-    ];
+  fileSystems."/boot" = { 
+    device = "/dev/disk/by-uuid/677C-995B";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
+
+  swapDevices = [ 
+    { device = "/dev/disk/by-uuid/33fcdca1-2661-4071-a769-57ed4303bd8b"; }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
