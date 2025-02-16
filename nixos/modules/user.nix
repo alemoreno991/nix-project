@@ -1,8 +1,13 @@
-{ pkgs, user, ... }: {
+{ pkgs,  ... }:
+let
+  user = "alejandro";
+in
+{
   users = {
     defaultUserShell = pkgs.bash;
-    users.${user} = {
+    users.${user}= {
       isNormalUser = true;
+      initialPassword = "123456";
       extraGroups = [ "wheel" "networkmanager" ];
     };
   };

@@ -1,8 +1,7 @@
 {
-  description = "My system configuration";
-
+  description = "Nixos config flake";
+     
   inputs = {
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     disko = {
@@ -10,61 +9,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+     impermanence = {
+       url = "github:nix-community/impermanence";
+     };
 
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
+     home-manager = {
+       url = "github:nix-community/home-manager/release-24.11";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
 
-    stylix.url = "github:danth/stylix";
-
-    # COMING SOON...
-    #nixvim = {
-    #  url = "github:nix-community/nixvim";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+     stylix.url = "github:danth/stylix/release-24.11";
+     
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
-    system = "x86_64-linux";
-    homeStateVersion = "24.11";
-    user = "alejandro";
-    hosts = [
-      { hostname = "thermopylae"; stateVersion = "24.11"; }
-    ];
-
-    makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
-      system = system;
-      specialArgs = {
-        inherit inputs stateVersion hostname user;
-      };
-
+  outputs = {nixpkgs, ...} @ inputs:
+  {
+    nixosConfigurations.thermopylae = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit inputs;};
       modules = [
         inputs.disko.nixosModules.default
-        ./hosts/${hostname}/configuration.nix
-        
-      ];
-    };
+        inputs.impermanence.nixosModules.impermanence
 
-  in {
-    nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
-      configs // {
-        "${host.hostname}" = makeSystem {
-          inherit (host) hostname stateVersion;
-        };
-      }) {} hosts;
-
-    homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {
-        inherit inputs homeStateVersion user;
-      };
-
-      modules = [
-        ./home-manager/home.nix
+        hosts/thermopylae/configuration.nix
+              
+        inputs.home-manager.nixosModules.default
       ];
     };
   };

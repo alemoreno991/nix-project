@@ -1,32 +1,59 @@
-{ pkgs, config, stateVersion, hostname, ... }:
+{ pkgs, config, lib, inputs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./local-packages.nix
-    ../../nixos/modules
-  ];
+  imports =
+    [
+      ./hardware-configuration.nix
+      ./disko.nix
+      ./local-packages.nix
+      ../../nixos/modules
+    ];
 
-  environment.systemPackages = [ pkgs.home-manager ];
-
-  networking.hostName = hostname;
-
-  system.stateVersion = stateVersion;
+  programs.fuse.userAllowOther = true;
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "alejandro" = import ../../home-manager/home.nix;
+    };
+  };
 
   fonts.fontDir.enable = true;
   
   nixpkgs.config.allowUnfree = true;
+
+  # services.xserver.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+
+  services.openssh.enable = true;
+
+  fileSystems."/nix".neededForBoot = true;
+  environment.persistence."/nix/persist/system" = {
+    hideMounts = true;
+    directories = [
+      "/etc/nixos"
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+    ];
+    files = [
+      "/etc/machine-id"
+      { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+    ];
+  };
+
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
 
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
 
@@ -62,5 +89,6 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-}
 
+  system.stateVersion = "24.11"; # Did you read the comment?
+}
