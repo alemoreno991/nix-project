@@ -2,7 +2,6 @@
   imports = [
     ./alacritty.nix
     ./bat.nix
-    # ./chromium.nix
     ./eza.nix
     ./git.nix
     ./gpg.nix
@@ -18,7 +17,6 @@
     ./waybar
     ./wofi
     ./zathura.nix
-    # ./zsh.nix
     ./shell
   ];
 }
