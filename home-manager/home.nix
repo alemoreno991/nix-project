@@ -17,11 +17,11 @@
       "Documents"
       "Downloads"
 #      ".gnupg"
-#      ".ssh"
+     ".ssh"
 #      ".local"
 #      ".config"
     ];
-#    files = [ ".bash_history" ];
+    files = [ ".bash_history" ];
     allowOther = true;
   };
 
