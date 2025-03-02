@@ -13,10 +13,10 @@
        url = "github:nix-community/impermanence";
      };
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lanzaboote = {
+    #   url = "github:nix-community/lanzaboote/v0.4.2";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
      home-manager = {
        url = "github:nix-community/home-manager/release-24.11";
@@ -40,7 +40,7 @@
       modules = [
         inputs.disko.nixosModules.default
         inputs.impermanence.nixosModules.impermanence
-        inputs.lanzaboote.nixosModules.lanzaboote
+        # inputs.lanzaboote.nixosModules.lanzaboote
 
         hosts/thermopylae/configuration.nix
               

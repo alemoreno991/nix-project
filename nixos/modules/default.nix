@@ -5,7 +5,7 @@
     ./boot.nix
     ./env.nix
     ./hyprland.nix
-    ./lanzaboote.nix
+    # ./lanzaboote.nix
     ./mime.nix
     ./net.nix
     ./nh.nix
