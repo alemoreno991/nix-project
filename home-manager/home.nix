@@ -21,7 +21,10 @@
 #      ".local"
 #      ".config"
     ];
-    files = [ ".bash_history" ];
+    files = [ 
+      ".bash_history" 
+      ".config/sops/age/keys.txt"
+    ];
     allowOther = true;
   };
 

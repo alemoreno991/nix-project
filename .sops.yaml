@@ -1,0 +1,8 @@
+keys:
+  - $users:
+    - &ta age14yzsz0d80rpm3eh09s3923da5yvlfysa3n6nefsanyva07hp3vlsrwhwau
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+    - age:
+      - *ta
