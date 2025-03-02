@@ -7,6 +7,7 @@
     ./gpg.nix
     ./hyprland
     ./lazygit.nix
+    ./librewolf.nix
     ./nvim
     # ./obsidian.nix
     ./ranger.nix

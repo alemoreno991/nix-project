@@ -6,7 +6,6 @@
 
     # Desktop apps
     obsidian
-    librewolf
     signal-desktop
     telegram-desktop
 
