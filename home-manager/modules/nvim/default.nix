@@ -118,16 +118,37 @@
           })
         ";
       }
+
+
+      # Jupyter notebook support
+      image-nvim # for image rendering
+      molten-nvim
     ];
+
 
     extraPackages = with pkgs; [
       lua-language-server  # LSP server for lua 
       pyright              # LSP server for python 
-      python311Packages.python-lsp-server
       nixd
       vimPlugins.nvim-treesitter-parsers.hyprlang
       bash-language-server
       nodejs-slim # Needed by copilot
+      imagemagick # for image rendering (required by molten)
+    ];
+
+    extraLuaPackages = ps: [
+      # ... other lua packages
+      magick # for image rendering
+    ];
+
+    extraPython3Packages = ps: with ps; [
+      # ... other python packages
+      pynvim
+      jupyter-client
+      cairosvg # for image rendering
+      pnglatex # for image rendering
+      plotly # for image rendering
+      pyperclip
     ];
   };
 
