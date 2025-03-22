@@ -125,7 +125,6 @@
       molten-nvim
     ];
 
-
     extraPackages = with pkgs; [
       lua-language-server  # LSP server for lua 
       pyright              # LSP server for python 
@@ -136,13 +135,13 @@
       imagemagick # for image rendering (required by molten)
     ];
 
-    extraLuaPackages = ps: [
-      # ... other lua packages
-      magick # for image rendering
-    ];
+    # extraLuaPackages = ps: [
+    #   # ... other lua packages (required by molten)
+    #   magick # for image rendering
+    # ];
 
     extraPython3Packages = ps: with ps; [
-      # ... other python packages
+      # ... other python packages (required by molten)
       pynvim
       jupyter-client
       cairosvg # for image rendering
