@@ -25,6 +25,7 @@
     zip
 
     # Coding stuff
+    devenv
 
     # WM stuff
     libsForQt5.xwaylandvideobridge
