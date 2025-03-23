@@ -17,7 +17,7 @@
             triggers = [ 
               "BufWritePost" 
             ];
-          },
+          };
 
           completion.enabled = true;
         };
