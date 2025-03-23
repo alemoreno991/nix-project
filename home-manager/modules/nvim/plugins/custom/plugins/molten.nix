@@ -26,5 +26,81 @@
         wrap_output = false;
       };
     };
+
+    # https://nix-community.github.io/nixvim/keymaps/index.html
+    keymaps = [
+      {
+        mode = "n";
+        key = "<localleader>mi";
+        action = "<cmd>MoltenInit<CR>";
+        options = {
+          desc = "Initialize the plugin";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader>e";
+        action = "<cmd>MoltenEvaluateOperator<CR>";
+        options = {
+          desc = "run operator selection";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader>rl";
+        action = "<cmd>MoltenEvaluateLine<CR>";
+        options = {
+          desc = "evaluate line";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader>rr";
+        action = "<cmd>MoltenReevaluateCell<CR>";
+        options = {
+          desc = "re-evaluate cell";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader>r";
+        action = "<cmd><C-u>MoltenEvaluateVisual<CR>gv";
+        options = {
+          desc = "evaluate visual selection";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader>rd";
+        action = "<cmd>MoltenDelete<CR>";
+        options = {
+          desc = "molten delete cell";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader>oh";
+        action = "<cmd>MoltenHideOutput<CR>";
+        options = {
+          desc = "hide output";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader>os";
+        action = "<cmd>noautocmd MoltenEnterOutput<CR>";
+        options = {
+          desc = "show/enter output";
+          silent = true;
+        };
+      }
+    ];
   };
 }
