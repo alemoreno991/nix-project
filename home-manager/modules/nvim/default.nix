@@ -27,6 +27,7 @@
     # Add your plugins to ./plugins/custom/plugins and import them below
     ./plugins/custom/plugins/molten.nix
     ./plugins/custom/plugins/quarto.nix
+    ./plugins/custom/plugins/jupytext.nix
   ];
 
   /*
