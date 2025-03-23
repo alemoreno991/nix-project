@@ -1,6 +1,5 @@
 { pkgs, inputs, ... }: {
   imports = [
-    Uncomment if you are using the home-manager module
     inputs.nixvim.homeManagerModules.nixvim
 
     # Plugins
