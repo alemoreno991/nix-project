@@ -9,8 +9,10 @@
       # Used to format nix code
       alejandra
       # Used to format Python code
-      isort 
+      isort
       black
+      # Used to format C/C++
+      clang-format
     ];
 
     # Autoformat
@@ -18,7 +20,9 @@
     plugins.conform-nvim = {
       enable = true;
       settings = {
-        notify_on_error = false;
+        log_level = "warn";
+        notify_on_error = true;
+        notify_no_formatters = true;
         format_on_save = ''
           function(bufnr)
             -- Disable "format_on_save lsp_fallback" for lanuages that don't
@@ -34,12 +38,18 @@
         formatters_by_ft = {
           lua = ["stylua"];
           nix = ["alejandra"];
+          cpp = ["clang_format"];
           # Conform can also run multiple formatters sequentially
-          python = [ "isort" "black" ];
+          python = ["isort" "black"];
 
           # You can use a sublist to tell conform to run *until* a formatter
           # is found
           # javascript = [ [ "prettierd" "prettier" ] ];
+          "_" = [
+            "squeeze_blanks"
+            "trim_whitespace"
+            "trim_newlines"
+          ];
         };
       };
     };
