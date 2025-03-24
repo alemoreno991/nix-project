@@ -12,7 +12,7 @@
       isort
       black
       # Used to format C/C++
-      clang-format
+      llvmPackages_18.clang-tools
     ];
 
     # Autoformat
