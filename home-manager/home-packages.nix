@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
@@ -19,6 +19,7 @@
     git-graph
     htop
     ripgrep
+    tree
     unzip
     wget
     wl-clipboard
