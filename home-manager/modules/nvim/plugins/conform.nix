@@ -6,6 +6,11 @@
     extraPackages = with pkgs; [
       # Used to format Lua code
       stylua
+      # Used to format nix code
+      alejandra
+      # Used to format Python code
+      isort 
+      black
     ];
 
     # Autoformat
@@ -28,9 +33,10 @@
         '';
         formatters_by_ft = {
           lua = ["stylua"];
+          nix = ["alejandra"];
           # Conform can also run multiple formatters sequentially
-          # python = [ "isort "black" ];
-          #
+          python = [ "isort" "black" ];
+
           # You can use a sublist to tell conform to run *until* a formatter
           # is found
           # javascript = [ [ "prettierd" "prettier" ] ];
