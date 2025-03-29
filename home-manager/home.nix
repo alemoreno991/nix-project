@@ -1,28 +1,31 @@
-{ pkgs, inputs, ... }:
-
-{ 
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
     ./home-packages.nix
     ./modules
   ];
 
-#  # Home Manager needs a bit of information about you and the
-#  # paths it should manage.
-#  home.username = "alejandro";
-#  home.homeDirectory = "/home/alejandro";
+  #  # Home Manager needs a bit of information about you and the
+  #  # paths it should manage.
+  #  home.username = "alejandro";
+  #  home.homeDirectory = "/home/alejandro";
 
   home.persistence."/nix/persist/home/alejandro" = {
     directories = [
       "Documents"
       "Downloads"
-#      ".gnupg"
-     ".ssh"
-#      ".local"
-#      ".config"
+      #      ".gnupg"
+      ".ssh"
+      ".librewolf"
+      #      ".local"
+      #      ".config"
     ];
-    files = [ 
-      ".bash_history" 
+    files = [
+      ".bash_history"
       ".config/sops/age/keys.txt"
     ];
     allowOther = true;
