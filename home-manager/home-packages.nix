@@ -8,6 +8,7 @@
     obsidian
     signal-desktop
     telegram-desktop
+    zotero
 
     # CLI utils
     brightnessctl
