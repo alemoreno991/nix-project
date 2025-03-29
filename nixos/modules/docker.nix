@@ -8,5 +8,5 @@ in {
 
   users.users.${user}.extraGroups = ["docker"];
 
-  hardware.nvidia-container-toolkit.enable = true;
+  # hardware.nvidia-container-toolkit.enable = true;
 }
