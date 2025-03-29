@@ -3,10 +3,8 @@
 in {
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
+    enableOnBoot = true;
   };
-
   users.users.${user}.extraGroups = ["docker"];
-
-  # hardware.nvidia-container-toolkit.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
 }
