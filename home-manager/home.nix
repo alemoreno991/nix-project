@@ -18,6 +18,7 @@
     directories = [
       "Documents"
       "Downloads"
+      "Zotero"
       #      ".gnupg"
       ".ssh"
       ".librewolf"
