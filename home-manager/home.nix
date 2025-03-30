@@ -9,21 +9,17 @@
     ./modules
   ];
 
-  #  # Home Manager needs a bit of information about you and the
-  #  # paths it should manage.
-  #  home.username = "alejandro";
-  #  home.homeDirectory = "/home/alejandro";
-
+  # Impermanence settings.
+  #
+  # WARN: by default the `/home/<user>` uses tmpfs (i.e. lives in RAM).
+  # These are the user directories that will be bind mounted to a hard-drive.
   home.persistence."/nix/persist/home/alejandro" = {
     directories = [
       "Documents"
       "Downloads"
       "Zotero"
-      #      ".gnupg"
       ".ssh"
       ".librewolf"
-      #      ".local"
-      #      ".config"
     ];
     files = [
       ".bash_history"

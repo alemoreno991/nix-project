@@ -1,5 +1,7 @@
-{ inputs, ... }:
-{
+# https://github.com/getsops/sops
+#
+# Simple and flexible tool for managing secrets
+{inputs, ...}: {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];

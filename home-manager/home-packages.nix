@@ -5,7 +5,6 @@
     # Packages in each category are sorted alphabetically
 
     # Desktop apps
-    obsidian
     signal-desktop
     telegram-desktop
     zotero

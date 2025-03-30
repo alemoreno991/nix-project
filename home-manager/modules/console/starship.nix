@@ -1,7 +1,9 @@
+# https://starship.rs/
+#
+# The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 {
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
     settings = {
       add_newline = true;
       hostname = {

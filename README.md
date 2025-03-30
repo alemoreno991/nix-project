@@ -1,10 +1,8 @@
-# ❄️ NixOS Config Reborn
+# ❄️ NixOS Config
 
-Welcome to my redesigned NixOS configuration built for efficiency and aesthetics. Right now I'm trying to commit something everyday. Let's see how long I can go.
+This is my personal NixOS configuration.
 
 ![screenshot](./screenshots/screenshot1.png)
-
-You can still find my old configuration [here](https://github.com/Andrey0189/nixos-config)
 
 ## ✨ Features
 
@@ -13,74 +11,55 @@ You can still find my old configuration [here](https://github.com/Andrey0189/nix
 - 🪟 **Hyprland + Waybar**: 10/10 window compositor on Wayland.
 - 🏠 **Home Manager Integration**: lots of stuff configured.
 - 🧇 **Tmux**: with my own hotkeys.
-- 🌟 **Zsh + starship**: Efficient shell setup with lots of aliases.
+- 🌟 **Bash + starship**: Efficient shell setup with lots of aliases.
 
 ## 🚀 Installation
 
 To get started with this setup, follow these steps:
 
-1. **Install NixOS**: If you haven't already installed NixOS, follow the [NixOS Installation Guide](https://nixos.org/manual/nixos/stable/#sec-installation) for detailed instructions.
+1. **NixOS**: boot into the NixOS ISO image.
 2. **Clone the Repository**:
 
-	```bash
-    git clone https://github.com/Andrey0189/nixos-config-reborn
-    cd nixos-config-reborn
+    ```bash
+    git clone https://github.com/alemoreno991/nix-project
+    cd nix-project
     ```
 
-3. **Copy one of the hosts configuration to set up your own**:
+3. **Format & Partition the Disk**:
 
     ```bash
-    cd hosts
-    cp -r slim3 <your_hostname>
-    cd <your_hostname>
+    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount hosts/thermopylae/disko.nix
     ```
 
-4. **Put your `hardware-configuration.nix` file there**:
+4. **Install your customized NixOS**:
 
     ```bash
-    cp /etc/nixos/hardware-configuration.nix ./
+    sudo nixos-rebuild switch --flake .#thermopylae
     ```
 
-5. **Edit `hosts/<your_hostname>/local-packages.nix` and `nixos/packages.nix` files if needed**:
+> [!Tip]
+> In case you want to rebuild your NixOS configuration, make sure to first
+> `git add .` your changes and then `sudo nixos-rebuild switch --flake .#thermopylae`
 
-    ```bash
-    vim local-packages.nix
-    vim ../../nixos/packages.nix
-    ```
+## Directory Structure
 
-6. **Finally, edit the `flake.nix` file**:
-
-    ```diff
-    ...
-      outputs = { self, nixpkgs, home-manager, ... }@inputs: let
-        system = "x86_64-linux";
-    --  homeStateVersion = "24.11";
-    ++  homeStateVersion = "<your_home_manager_state_version>";
-    --  user = "amper";
-    ++  user = "<your_username>";
-        hosts = [
-    --    { hostname = "slim3"; stateVersion = "24.05"; }
-    --    { hostname = "330-15ARR"; stateVersion = "24.11"; }
-    ++    { hostname = "<your_hostname>"; stateVersion = "<your_state_version>"; }
-        ];
-    ...
-    ```
-
-7. **Rebuilding**:
-
-    ```bash
-    cd nixos-config-reborn
-    git add .
-    nixos-rebuild switch --flake ./#<hostname>
-    # or nixos-install --flake ./#<hostname> if you are installing on a fresh system
-    home-manager switch
-    ```
+```shell
+.
+├── flake.lock              # Pin the versions of the packages used by NixOS
+├── flake.nix               # Entrypoint of the flake-based NixOS config
+├── home-manager        #--- Configurations related to specific USERS
+│   ├── home.nix            # Entrypoint for the user-specific configuration
+│   ├── home-packages.nix   # Defines the user-specific packages
+│   └── modules             #--- Collection of packages with custom settings (shared by many USERS)
+├── hosts               #--- Configurations related to specific HOSTS
+│   └── thermopylae         #--- `configuration.nix`, `hardware-configuration.nix`
+├── nixos               #--- Configurations shared by many HOSTS
+│   └── modules             #--- Collection of packages with custom settings (shared by many HOSTS)
+└── secrets.yaml            # File that stores the secrets injected into the configurations.
+```
 
 ## 😎 Enjoy!
 
 ![screenshot](./screenshots/screenshot2.png)
 
 ## 🤝 Contributions
-
-Feel free to fork the repository and submit pull requests if you'd like to contribute improvements. Open issues if you encounter any problems with the config or have ideas for new features.
-

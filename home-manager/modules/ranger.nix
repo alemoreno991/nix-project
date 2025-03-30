@@ -1,3 +1,6 @@
+# https://github.com/ranger/ranger
+#
+# A VIM-inspired filemanager for the console
 {
   programs.ranger = {
     enable = true;

@@ -1,23 +1,20 @@
 {
   imports = [
-    ./alacritty.nix
     ./bat.nix
-    ./eza.nix
-    ./git.nix
     ./gpg.nix
-    ./hyprland
-    ./lazygit.nix
-    ./librewolf.nix
-    ./nvim
-    # ./obsidian.nix
-    ./ranger.nix
-    ./starship.nix
-    ./stylix.nix
-    ./swaync
-    ./tmux.nix
-    ./waybar
-    ./wofi
-    ./zathura.nix
-    ./shell
+    ./librewolf.nix # Browser
+    ./obsidian.nix # Note taking app
+    ./zathura.nix # Document viewer
+
+    #--- Programming ---
+    ./git.nix # Version Control System
+    ./lazygit.nix # A simple terminal UI for git commands
+    ./nvim # Text Editor
+
+    #--- Desktop (i.e. window manager, app launcher, bars, style) ---
+    ./desktop
+
+    #--- Console (i.e. terminal emulator, shell, tmux, custom prompt, etc) ---
+    ./console
   ];
 }
