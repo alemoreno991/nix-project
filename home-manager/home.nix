@@ -18,6 +18,7 @@
       "Documents"
       "Downloads"
       "Zotero"
+      ".cache/bazel"
       ".ssh"
       ".librewolf"
     ];
