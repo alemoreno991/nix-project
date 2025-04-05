@@ -17,6 +17,7 @@
     directories = [
       "Documents"
       "Downloads"
+      "Obsidian"
       "Zotero"
       ".cache/bazel"
       ".ssh"
